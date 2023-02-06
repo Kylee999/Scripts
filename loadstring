@@ -1,6 +1,6 @@
 if game.PlaceId == 8540346411 then
 
-loadstring(game:HttpGet('https://raw.githubusercontent.com/Kyleeeeeeeeeeeeee/rcx/main/rcx'))()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/Kyleeeeeeeeeeeeee/scripts/main/rebirthchampionsx'))()
 
 else
   game.StarterGui:SetCore("SendNotification", {
