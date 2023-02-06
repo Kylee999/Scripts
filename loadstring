@@ -1,1 +1,12 @@
+if game.PlaceId == 8540346411 then
+
 loadstring(game:HttpGet('https://raw.githubusercontent.com/Kyleeeeeeeeeeeeee/rcx/main/rcx'))()
+
+else
+  game.StarterGui:SetCore("SendNotification", {
+      Title = "KYLEE HUB";
+      Text = "Game Is Not Supported"; 
+      Icon = "rbxassetid://4838075912"; 
+      Duration = 2; 
+      })
+ end
