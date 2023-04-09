@@ -4,8 +4,12 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Kyl
 
 local Window = OrionLib:MakeWindow({Name = "Kylee's Hub", HidePremium = true, SaveConfig = false, ConfigFolder = "Kylee"})
 
+local Event = "Easter"
+
+local toCollect = "Collect" .. Event .. "Eggs"
+
 local Tab = Window:MakeTab({
-	Name = "100M Event!",
+	Name = "" .. Event .. "Event!",
 	Icon = "rbxassetid://7657243214",
 	PremiumOnly = false
 })
@@ -36,17 +40,17 @@ local Tab5 = Window:MakeTab({
 
 
 local Section = Tab:AddSection({
-	Name = "100M Event!"
+	Name = "Easter Event!"
 })
 
 Tab:AddToggle({
-	Name = "Auto Collect Cupcake",
+	Name = "Auto Collect " .. Event .. "!",
 	Default = false,
 	Callback = function(Value)
         getgenv().CollectCupcakes = Value
         while getgenv().CollectCupcakes do
-        wait(0.2)
-        for i,v in pairs(game:GetService("Workspace").Scripts.CollectCupcakes.Storage:GetDescendants()) do
+        wait()
+        for i,v in pairs(game:GetService("Workspace").Scripts[toCollect].Storage:GetDescendants()) do
           if (v.Name == "TouchInterest" and v.Parent) then
           firetouchinterest(game.Players.LocalPlayer.Character.Head, v.Parent, 0)
           wait()
@@ -56,7 +60,7 @@ Tab:AddToggle({
 	end    
 end
 })
-
+--[[
 local EventUpgrader = Tab:AddSection({
     Name = "Event Upgrader"
 })
@@ -104,6 +108,7 @@ local EventUpgrader = Tab:AddSection({
                 end
 	end    
 })
+]]
 -------------------------------------------------------------------------------------------------------------------------------
 
 local Farm = Tab2:AddSection({
