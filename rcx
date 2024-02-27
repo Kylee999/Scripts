@@ -1,0 +1,692 @@
+repeat wait() until game:IsLoaded() and game.Players and game.Players.LocalPlayer and game.Players.LocalPlayer.Character
+
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Kyleeeeeeeeeeeeee/uilibrary/main/uilib')))()
+
+local Window = OrionLib:MakeWindow({Name = "Kylee's Hub", HidePremium = true, SaveConfig = false, ConfigFolder = "Kylee"})
+
+local Event = "Easter"
+
+local ExistingEvent = false
+
+local toCollect = "Collect" .. Event .. "Eggs"
+
+if ExistingEvent == true then 
+local EventWindow = Window:MakeTab({
+	Name = "" .. Event .. "Event!",
+	Icon = "rbxassetid://7657243214",
+	PremiumOnly = false
+})
+end
+
+local Tab2 = Window:MakeTab({
+	Name = "Farming",
+	Icon = "rbxassetid://11911613779",
+	PremiumOnly = false
+})
+
+local Tab3 = Window:MakeTab({
+	Name = "Pets",
+	Icon = "rbxassetid://9194077649",
+	PremiumOnly = false
+})
+
+local Tab4 = Window:MakeTab({
+	Name = "Miscs",
+	Icon = "rbxassetid://9525535512",
+	PremiumOnly = false
+})
+
+local Tab5 = Window:MakeTab({
+	Name = "Information",
+	Icon = "rbxassetid://5128872300",
+	PremiumOnly = false
+})
+
+if ExistingEvent == true then 
+local Section = EventWindow:AddSection({
+	Name = "" .. Event .. "Event!"
+})
+
+local EventFarm = EventWindow:AddToggle({
+	Name = "Auto Collect " .. Event .. "!",
+	Default = false,
+	Callback = function(Value)
+        getgenv().CollectEvent = Value
+        while getgenv().CollectEvent do
+        wait()
+        for i,v in pairs(game:GetService("Workspace").Scripts[toCollect].Storage:GetDescendants()) do
+          if (v.Name == "TouchInterest" and v.Parent) then
+          firetouchinterest(game.Players.LocalPlayer.Character.Head, v.Parent, 0)
+          wait()
+          break;
+         end
+        end 
+	end    
+end
+})
+end
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+local Farm = Tab2:AddSection({
+	Name = "Main Farming!"
+})
+
+AutoClick = Tab2:AddToggle({
+	Name = "Auto Click",
+  Default = false,
+  Save = true,
+  Flag = "AutoClick",
+	Callback = function(Value)
+    getgenv().Toggle = Value
+    while getgenv().Toggle do
+    wait()
+    game:GetService("ReplicatedStorage").Events.Click3:FireServer()
+    end
+	end    
+})
+
+spawn(function()
+  function rebirth(amount)
+      local args = {
+          [1] = amount
+      }
+      game:GetService("ReplicatedStorage").Events.Rebirth:FireServer(unpack(args))
+    end
+end)
+
+local ToggleHighest = Tab2:AddToggle({
+Name = "Auto Rebirth Highest Unlocked",
+Default = false,
+Callback = function(Value)
+    getgenv().autorebirth = Value 
+    while getgenv().autorebirth == true do 
+  wait()
+rebirth(game:GetService("Players").LocalPlayer.Upgrades.RebirthButtons.Value)
+    end
+end
+})
+
+local RebirthStatus = Tab2:AddLabel(game:GetService("Players").LocalPlayer.Upgrades.RebirthButtons.Value)
+
+spawn(function()
+  while true do wait()
+  RebirthStatus:Set("Rebirth Buttons Unlocked : " .. game:GetService("Players").LocalPlayer.Upgrades.RebirthButtons.Value)
+    end
+  end)
+
+    
+local AmuletSection = Tab2:AddSection({
+    Name = "Amulet Forest"
+})
+  
+local AmuletForest = Tab2:AddLabel("Status : Idle")
+  
+AmuletForest:Set("Status : Idle")
+
+  local AutoAmulet = Tab2:AddButton({
+    Name = "Auto Fully Amulet Forest",
+    Callback = function()
+    local part = Instance.new("Part", game.Workspace) 
+    part.Anchored = true
+    part.Size = Vector3.new(5,0.5,5)
+    local hrp = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart")
+  AmuletForest:Set("Status : Doing First Puzzle")
+  game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-391.252777, 33.3445282, 212.554214, 0.88286835, -0, -0.469620556, 0, 1, -0, 0.469620556, 0, 0.88286835)
+  part.CFrame = CFrame.new(hrp.Position.X, hrp.Position.Y - 3.25, hrp.Position.Z)   
+  wait(1)
+  fireproximityprompt(game:GetService("Workspace").Scripts.Amulets.Collect.Forest["1"].ProximityPrompt)
+  wait(1)
+  AmuletForest:Set("Status : Doing Second Puzzle")
+  game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-444.659485, 30.2514687, 205.422882, 0.88286835, -0, -0.469620556, 0, 1, -0, 0.469620556, 0, 0.88286835)
+  part.CFrame = CFrame.new(hrp.Position.X, hrp.Position.Y - 3.25, hrp.Position.Z)   
+  wait(1)
+  fireproximityprompt(game:GetService("Workspace").Scripts.Amulets.Collect.Forest["2"].ProximityPrompt)
+  wait(1)
+  AmuletForest:Set("Status : Doing Third Puzzle")
+  game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(240.741348, 2.19562127, 55.8823929, 0.991949022, 0.126637697, 0, -0.126637697, 0.991949022, -0, -0, 0, 1)
+  part.CFrame = CFrame.new(hrp.Position.X, hrp.Position.Y - 3.25, hrp.Position.Z)   
+  wait(1)
+  fireproximityprompt(game:GetService("Workspace").Scripts.Amulets.Collect.Forest["3"].ProximityPrompt)
+  wait(1)
+  AmuletForest:Set("Status : Doing Fourth Puzzle")
+  game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-478.196289, 33.3990536, 187.002655, 0.88286835, -0, -0.469620556, 0, 1, -0, 0.469620556, 0, 0.88286835)
+  part.CFrame = CFrame.new(hrp.Position.X, hrp.Position.Y - 3.25, hrp.Position.Z)  
+      wait(1)
+  fireproximityprompt(game:GetService("Workspace").Scripts.Amulets.Collect.Forest["4"].ProximityPrompt)
+      wait(1)
+  AmuletForest:Set("Status : Doing Fifth Puzzle")
+  game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(378.173706, 2.81269908, 19.6198158, 1, 0, 0, 0, 0.991583526, -0.129468739, 0, 0.129468739, 0.991583526)
+  part.CFrame = CFrame.new(hrp.Position.X, hrp.Position.Y - 3.25, hrp.Position.Z)   
+  wait(1)
+  fireproximityprompt(game:GetService("Workspace").Scripts.Amulets.Collect.Forest["5"].ProximityPrompt)
+  wait(1)
+  AmuletForest:Set("Status : Doing Sixth Puzzle")
+  game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-393.538239, 31.2353687, 139.381882, 0.88286835, -0, -0.469620556, 0, 1, -0, 0.469620556, 0, 0.88286835)
+  part.CFrame = CFrame.new(hrp.Position.X, hrp.Position.Y - 3.25, hrp.Position.Z) 
+  wait(1)
+  fireproximityprompt(game:GetService("Workspace").Scripts.Amulets.Collect.Forest["6"].ProximityPrompt)
+  wait(1)
+  AmuletForest:Set("Status : Doing Seventh Puzzle")
+  game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(344.245544, -53.0746269, 115.657967, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+  part.CFrame = CFrame.new(hrp.Position.X, hrp.Position.Y - 3.25, hrp.Position.Z)  
+  wait(1)
+  fireproximityprompt(game:GetService("Workspace").Scripts.Amulets.Collect.Forest["7"].ProximityPrompt)
+  wait(1)
+  AmuletForest:Set("Status : Doing Eight Puzzle")
+  game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(164.976959, 2.7437408, 127.227089, 1, 0, 0, 0, 0.999829352, -0.0184721258, 0, 0.0184721258, 0.999829352)
+  part.CFrame = CFrame.new(hrp.Position.X, hrp.Position.Y - 3.25, hrp.Position.Z)   
+  wait(1)
+  fireproximityprompt(game:GetService("Workspace").Scripts.Amulets.Collect.Forest["8"].ProximityPrompt)
+    wait(2)
+    AmuletForest:Set("Status : Returning To Spawn")
+    game:GetService("ReplicatedStorage").Events.WorldBoost:FireServer("Spawn")
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(232.542999, 5.55755639, 25.3229446, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+    part.CFrame = CFrame.new(hrp.Position.X, hrp.Position.Y - 3.25, hrp.Position.Z)
+    part:Destroy()
+    wait(1) 
+  AmuletForest:Set("Status : Claiming Puzzle Rewarrd")
+    wait(1)
+    game:GetService("ReplicatedStorage").Events.CraftAmulet:FireServer("Forest")
+    wait(1)
+      AmuletForest:Set("Status : Idle")
+    end
+  })
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+local AmuletSection = Tab2:AddSection({
+  Name = "Amulet Space"
+})
+  
+local LabelSpace = Tab2:AddLabel("Need 1 Black Hole Egg Pet Or Higher To Auto Do Amulet")
+
+local Buy Space = Tab2:AddButton({
+  Name = "Buy Black Hole Egg [100qdD] ",
+  Callback = function()
+game:GetService("ReplicatedStorage").Functions.Unbox:InvokeServer(table.unpack({"Black Hole","Single"}))
+  end,
+})
+
+local AmuletSpace = Tab2:AddLabel("Status : Idle")
+
+local AutoAmulet = Tab2:AddButton({
+  Name = "Auto Fully Amulet Space",
+  Callback = function()
+  local part = Instance.new("Part", game.Workspace) 
+  part.Anchored = true
+  part.Size = Vector3.new(5,0.5,5)
+  local hrp = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart")
+  AmuletSpace:Set("Status : Doing First Puzzle")
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-762.397827, 31.5432625, -765.320557, -0.102578402, 0, 0.994724929, 0, 1, 0, -0.994724929, 0, -0.102578402)
+part.CFrame = CFrame.new(hrp.Position.X, hrp.Position.Y - 3.25, hrp.Position.Z)   
+wait(1)
+fireproximityprompt(game:GetService("Workspace").Scripts.Amulets.Collect.Space["1"].ProximityPrompt)
+wait(1)
+AmuletSpace:Set("Status : Doing Second Puzzle")
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1302.09045, 47.4877625, -802.826965, 0.736216068, -0.116217852, -0.666692793, -3.10949981e-05, 0.985138178, -0.171763554, 0.676746547, 0.126475826, 0.725270987)
+part.CFrame = CFrame.new(hrp.Position.X, hrp.Position.Y - 3.25, hrp.Position.Z)   
+wait(1)
+fireproximityprompt(game:GetService("Workspace").Scripts.Amulets.Collect.Space["2"].ProximityPrompt)
+wait(1)
+AmuletSpace:Set("Status : Doing Third Puzzle")
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-225.764008, -55.318428, -272.065735, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+part.CFrame = CFrame.new(hrp.Position.X, hrp.Position.Y - 3.25, hrp.Position.Z)   
+wait(1)
+fireproximityprompt(game:GetService("Workspace").Scripts.Amulets.Collect.Space["3"].ProximityPrompt)
+wait(1)
+AmuletSpace:Set("Status : Doing Fourth Puzzle")
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(345.34549, 88.8793182, -2035.30505, 0.992760003, 0, 0.120114915, 0, 1, 0, -0.120114915, 0, 0.992760003)
+part.CFrame = CFrame.new(hrp.Position.X, hrp.Position.Y - 3.25, hrp.Position.Z)  
+    wait(1)
+fireproximityprompt(game:GetService("Workspace").Scripts.Amulets.Collect.Space["4"].ProximityPrompt)
+    wait(1)
+    AmuletSpace:Set("Status : Doing Fifth Puzzle")
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1006.80939, 42.1533356, -976.421448, 0.970416248, -0.190671742, 0.148109972, 0.206716657, 0.973104477, -0.101665571, -0.124741733, 0.129274726, 0.983731449)
+part.CFrame = CFrame.new(hrp.Position.X, hrp.Position.Y - 3.25, hrp.Position.Z)   
+wait(1)
+fireproximityprompt(game:GetService("Workspace").Scripts.Amulets.Collect.Space["5"].ProximityPrompt)
+wait(1)
+AmuletSpace:Set("Status : Doing Sixth Puzzle")
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(936.880432, 8.37944508, -309.128845, -0.46241951, 0, -0.886661649, 0, 1, 0, 0.886661649, 0, -0.46241951)
+part.CFrame = CFrame.new(hrp.Position.X, hrp.Position.Y - 3.25, hrp.Position.Z) 
+wait(1)
+fireproximityprompt(game:GetService("Workspace").Scripts.Amulets.Collect.Space["6"].ProximityPrompt)
+wait(1)
+AmuletSpace:Set("Status : Doing Seventh Puzzle")
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1625.17395, 26.3158817, 3.36969256, 0.99044168, -0.039517045, -0.132150173, -0.051546149, 0.782623172, -0.62035805, 0.127938509, 0.621240318, 0.773105621)
+part.CFrame = CFrame.new(hrp.Position.X, hrp.Position.Y - 3.25, hrp.Position.Z)  
+wait(1)
+fireproximityprompt(game:GetService("Workspace").Scripts.Amulets.Collect.Space["7"].ProximityPrompt)
+wait(1)
+AmuletSpace:Set("Status : Doing Eight Puzzle")
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1430.72058, 26.0657883, 685.603577, 0.657350361, 0, 0.7535851, 0, 1, 0, -0.7535851, 0, 0.657350361)
+part.CFrame = CFrame.new(hrp.Position.X, hrp.Position.Y - 3.25, hrp.Position.Z)   
+wait(1)
+fireproximityprompt(game:GetService("Workspace").Scripts.Amulets.Collect.Space["8"].ProximityPrompt)
+  wait(2)
+  AmuletSpace:Set("Status : Returning To Space")
+game:GetService("ReplicatedStorage").Events.WorldBoost:FireServer("Space")
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(433.627899,89.7428589, -1870.16626, 1.992760003, 0, 0.120114915, 0, 1, 0, -0.120114915, 0, 0.992760003)
+part.CFrame = CFrame.new(hrp.Position.X, hrp.Position.Y - 3.25, hrp.Position.Z)
+part:Destroy()
+  wait(1) 
+AmuletSpace:Set("Status : Claiming Puzzle Rewarrd")
+  wait(1)
+  game:GetService("ReplicatedStorage").Events.CraftAmulet:FireServer("Space")
+  wait(1)
+    AmuletSpace:Set("Status : Idle")
+  end
+})
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------
+
+
+local AmuletSection = Tab2:AddSection({
+  Name = "Amulet Aqua"
+})
+  
+local LabelAqua = Tab2:AddLabel("Need 1 Pirate Egg Pet Or Higher To Auto Do Amulet")
+
+local Buy Pirate = Tab2:AddButton({
+  Name = "Buy Pirate Egg [10qdD] ",
+  Callback = function()
+game:GetService("ReplicatedStorage").Functions.Unbox:InvokeServer(table.unpack({"Pirate","Single"}))
+  end,
+})
+
+
+local AmuletAqua = Tab2:AddLabel("Status : Idle")
+
+local AutoAmuletAqua = Tab2:AddButton({
+  Name = "Auto Fully Amulet Aqua",
+  Callback = function()
+  local part = Instance.new("Part", game.Workspace) 
+  part.Anchored = true
+  part.Size = Vector3.new(5,0.5,5)
+  local hrp = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart")
+  AmuletAqua:Set("Status : Doing First Puzzle")
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2013.34033, 1.35568738, -222.047729, -0.105120659, 0, 0.99445945, 0, 1, 0, -0.99445945, 0, -0.105120659)
+part.CFrame = CFrame.new(hrp.Position.X, hrp.Position.Y - 3.25, hrp.Position.Z)   
+wait(1)
+fireproximityprompt(game:GetService("Workspace").Scripts.Amulets.Collect.Aqua["1"].ProximityPrompt)
+wait(1)
+AmuletAqua:Set("Status : Doing Second Puzzle")
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2185.05762, 0.960364819, -262.748047, 0.0110782385, -0, -0.999938607, 0, 1, -0, 0.999938607, 0, 0.0110782385)
+part.CFrame = CFrame.new(hrp.Position.X, hrp.Position.Y - 3.25, hrp.Position.Z)   
+wait(1)
+fireproximityprompt(game:GetService("Workspace").Scripts.Amulets.Collect.Aqua["2"].ProximityPrompt)
+wait(1)
+AmuletAqua:Set("Status : Doing Third Puzzle")
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2122.02319, 21.9852104, -426.049713, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+part.CFrame = CFrame.new(hrp.Position.X, hrp.Position.Y - 3.25, hrp.Position.Z)   
+wait(1)
+fireproximityprompt(game:GetService("Workspace").Scripts.Amulets.Collect.Aqua["3"].ProximityPrompt)
+wait(1)
+AmuletAqua:Set("Status : Doing Fourth Puzzle")
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2101.59619, 1.38028514, -432.771637, -0.512824416, 0, 0.858493507, 0, 1, 0, -0.858493507, 0, -0.512824416)
+part.CFrame = CFrame.new(hrp.Position.X, hrp.Position.Y - 3.25, hrp.Position.Z)  
+    wait(1)
+fireproximityprompt(game:GetService("Workspace").Scripts.Amulets.Collect.Aqua["4"].ProximityPrompt)
+    wait(1)
+    AmuletAqua:Set("Status : Doing Fifth Puzzle")
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1683.50024, 49.6293945, -427.703003, -0.0599890947, 0, -0.998198986, 0, 1, 0, 0.998198986, 0, -0.0599890947)
+part.CFrame = CFrame.new(hrp.Position.X, hrp.Position.Y - 3.25, hrp.Position.Z)   
+wait(1)
+fireproximityprompt(game:GetService("Workspace").Scripts.Amulets.Collect.Aqua["5"].ProximityPrompt)
+wait(1)
+AmuletAqua:Set("Status : Doing Sixth Puzzle")
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2008.09204, 10.0877533, -437.047852, -0.886860967, 0.0615755096, -0.45791477, 0.0356458202, 0.997244358, 0.0650622025, 0.460659146, 0.0413783863, -0.886612058)
+part.CFrame = CFrame.new(hrp.Position.X, hrp.Position.Y - 3.25, hrp.Position.Z) 
+wait(1)
+fireproximityprompt(game:GetService("Workspace").Scripts.Amulets.Collect.Aqua["6"].ProximityPrompt)
+wait(1)
+AmuletAqua:Set("Status : Doing Seventh Puzzle")
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1717.22449, 86.3698349, -374.440338, 0.673291206, 0.248434365, 0.696390271, -0.262708187, 0.960783958, -0.0887615085, -0.691131949, -0.123185068, 0.712153077)
+part.CFrame = CFrame.new(hrp.Position.X, hrp.Position.Y - 3.25, hrp.Position.Z)  
+wait(1)
+fireproximityprompt(game:GetService("Workspace").Scripts.Amulets.Collect.Aqua["7"].ProximityPrompt)
+wait(1)
+AmuletAqua:Set("Status : Doing Eight Puzzle")
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2111.67676, 30.7223511, -183.144043, -0.771637321, 0, -0.636063278, 0, 1, 0, 0.636063278, 0, -0.771637321)
+part.CFrame = CFrame.new(hrp.Position.X, hrp.Position.Y - 3.25, hrp.Position.Z)   
+wait(1)
+fireproximityprompt(game:GetService("Workspace").Scripts.Amulets.Collect.Aqua["8"].ProximityPrompt)
+  wait(2)
+  AmuletAqua:Set("Status : Returning To Aqua")
+  game:GetService("ReplicatedStorage").Events.WorldBoost:FireServer("Aqua")
+  game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2097.28369, 4.52803516, -246.862747, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+  part.CFrame = CFrame.new(hrp.Position.X, hrp.Position.Y - 3.25, hrp.Position.Z)
+  part:Destroy()
+  wait(1) 
+  AmuletAqua:Set("Status : Claiming Puzzle Rewarrd")
+  wait(1)
+  game:GetService("ReplicatedStorage").Events.CraftAmulet:FireServer("Aqua")
+  wait(1)
+  AmuletAqua:Set("Status : Idle")
+  end
+})
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+local Pets = Tab3:AddSection({
+	Name = "Earn Pets!"
+})
+
+function hatch(name, mode)
+  local args = {
+      [1] = name,
+      [2] = mode
+  }
+  game:GetService("ReplicatedStorage").Functions.Unbox:InvokeServer(unpack(args))
+    end
+  
+  local EggTable = {}
+  local Eggs = game:GetService("Workspace").Scripts.Eggs
+  
+  for _,v in next, Eggs:GetChildren() do
+      table.insert(EggTable, v.Name)
+  end
+  
+  local eggchoice;
+  local EggChoice = Tab3:AddDropdown({
+    Name = "Select Eggs",
+    Default = "Please Select The Eggs",
+    Options = EggTable,
+    Callback = function(PetChoice)
+      eggchoice = PetChoice
+    end    
+  })
+  
+  local SelectedMode;
+  local SelectMode = Tab3:AddDropdown({
+    Name = "Select Egg Opening Mode",
+    Default = "Please Egg Opening Mode",
+    Options = {"Single", "Triple"},
+    Callback = function(Option)
+      SelectedMode = Option
+    end    
+  })
+  
+  local AutoHatch = Tab3:AddToggle({
+    Name = "Auto Hatch Egg",
+    Default = false,
+    Callback = function(Value)
+      getgenv().autohatch = Value 
+      while getgenv().autohatch == true do 
+      hatch(eggchoice, SelectedMode)
+          end
+    end    
+  })
+
+  local EggCombo = Tab3:AddLabel(game:GetService("Players").LocalPlayer.PlayerGui.MainUI.EggCombo.Text)
+
+  spawn(function()
+      while true do wait()
+      EggCombo:Set(game:GetService("Players").LocalPlayer.PlayerGui.MainUI.EggCombo.Text)
+      end
+      end)
+  
+
+local Pets = Tab3:AddSection({
+	Name = "Utilize Pets!"
+})
+
+AutoCraft = Tab3:AddToggle({
+	Name = "Auto Craft",
+	Default = false,
+	Callback = function(Value)
+    getgenv().Toggle = Value
+    while getgenv().Toggle do
+    wait()
+    game:GetService("ReplicatedStorage").Functions.Request:InvokeServer(table.unpack({"CraftAll",{},}))
+    end
+	end    
+})
+
+
+---------------------------------------------------------------------------------------------------------------
+
+
+local Section = Tab4:AddSection({
+	Name = "Player Miscs"
+})
+
+local Slider = Tab4:AddSlider({
+	Name = "Walk Speed",
+	Min = 16,
+	Max = 400,
+	Default = 48,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "Speed",
+	Callback = function(Value)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+	end    
+})
+
+local Gravity = Tab4:AddSlider({
+	Name = "Gravity",
+	Min = 1,
+	Max = 1000,
+	Default = 196,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "Gravity",
+	Callback = function(Value)
+    game.Workspace.Gravity = Value
+	end    
+})
+
+local FOV = Tab4:AddSlider({
+	Name = "Field Of View (FOV)",
+	Min = 10,
+	Max = 120,
+	Default = 70,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "Gravity",
+	Callback = function(Value)
+    game:GetService'Workspace'.Camera.FieldOfView = Value
+	end    
+})
+
+local Section = Tab4:AddSection({
+	Name = "Game Miscs"
+})
+
+local Unlock = Tab4:AddButton({
+	Name = "Unlock All Worlds",
+	Callback = function()
+    for i, v in pairs(game:GetDescendants()) do
+      if v.Name =="Unlocked" then
+         v.Value = "true"
+      end
+    end
+    
+      for i, v in pairs(game:GetDescendants(game:GetService("Workspace").Scripts.Portals)) do
+      if v.Name =="LabelUI" then
+         v:Destroy()
+      end
+    end
+  	end    
+})
+
+local GetChests = Tab4:AddButton({
+	Name = "Collect All Chests",
+	Callback = function()
+    game:GetService("Players").LocalPlayer.Passes.AutoChestCollect.Value = true
+    wait(10)
+    game:GetService("Players").LocalPlayer.Passes.AutoChestCollect.Value = false
+  	end    
+})
+
+
+local GetPass = Tab4:AddButton({
+  Name = "Get Some Gamepass",
+  Callback = function()
+    game:GetService("Players").LocalPlayer.Passes.AutoClicker.Value = true
+    game:GetService("Players").LocalPlayer.Passes.AutoRebirth.Value = true
+    game:GetService("Players").LocalPlayer.SpaceUpgrades.Teleport.Value = 1
+    game:GetService("Players").LocalPlayer.Upgrades.FreeAutoClicker.Value = 1
+    game:GetService("Players").LocalPlayer.Upgrades.FasterFreeAutoClicker.Value = 6
+  end
+})
+
+local GetPassNote = Tab4:AddLabel("Gets Auto Clicker, Auto Rebirth, Teleport + Auto Upgrades Them To Max")
+
+
+local ClaimDailySpin = Tab4:AddButton({
+  Name = "Auto Daily Spin",
+  Callback = function()
+game:GetService("ReplicatedStorage").Functions.Spin:InvokeServer()
+  end
+})
+
+local WhiteScreen = Tab4:AddToggle({
+	Name = "White Screen [ CPU Saver ]",
+	Default = false,
+	Callback = function(Value)
+    getgenv().Toggle = Value
+    while getgenv().Toggle == true do wait()
+            if getgenv().Toggle == true then
+        game:GetService("RunService"):Set3dRenderingEnabled(false)
+        setfpscap(10)
+      else 
+        game:GetService("RunService"):Set3dRenderingEnabled(true)
+        setfpscap(360)
+      end
+    end
+	end    
+})
+
+local ServerMisc = Tab4:AddSection({
+  Name = "Server Miscs"
+  })
+
+local RejoinsServer = Tab4:AddButton({
+  Name = "Rejoin",
+  Callback = function()
+    game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, game:GetService("Players").LocalPlayer)
+  end
+})
+
+local LabelHop = Tab4:AddLabel("Lower Server Hop Taken From V3rm. Credits to owner")
+
+local LowerServer = Tab4:AddButton({
+  Name = "Hop To Lower Player",
+  Callback = function()
+    local PlaceID = game.PlaceId
+    local AllIDs = {}
+    local foundAnything = ""
+    local actualHour = os.date("!*t").hour
+    local Deleted = false
+    local File = pcall(function()
+      AllIDs = game:GetService('HttpService'):JSONDecode(readfile("NotSameServers.json"))
+    end)
+    if not File then
+      table.insert(AllIDs, actualHour)
+      writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
+    end
+    function TPReturner()
+      local Site;
+      if foundAnything == "" then
+        Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
+      else
+        Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
+      end
+      local ID = ""
+      if Site.nextPageCursor and Site.nextPageCursor ~= "null" and Site.nextPageCursor ~= nil then
+        foundAnything = Site.nextPageCursor
+      end
+      local num = 0;
+      for i,v in pairs(Site.data) do
+        local Possible = true
+        ID = tostring(v.id)
+        if tonumber(v.maxPlayers) > tonumber(v.playing) then
+          for _,Existing in pairs(AllIDs) do
+            if num ~= 0 then
+              if ID == tostring(Existing) then
+                Possible = false
+              end
+            else
+              if tonumber(actualHour) ~= tonumber(Existing) then
+                local delFile = pcall(function()
+                  delfile("NotSameServers.json")
+                  AllIDs = {}
+                  table.insert(AllIDs, actualHour)
+                end)
+              end
+            end
+            num = num + 1
+          end
+          if Possible == true then
+            table.insert(AllIDs, ID)
+            wait()
+            pcall(function()
+              writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
+              wait()
+              game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID, game.Players.LocalPlayer)
+            end)
+            wait(8)
+          end
+        end
+      end
+    end
+    
+    function Teleport()
+      while wait() do
+        pcall(function()
+          TPReturner()
+          if foundAnything ~= "" then
+            TPReturner()
+          end
+        end)
+      end
+    end
+    Teleport()
+  end
+})
+
+for i,v in pairs(getconnections(game.Players.LocalPlayer.Idled)) do
+    v:Disable()
+  end
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+local Status = Tab5:AddSection({
+	Name = "General Information!"
+})
+
+
+
+local BeGone = Tab5:AddParagraph("Be Gone!","Hit The - Button To Minimize And The X Button To Close The Script")
+    
+ local Discord = Tab5:AddButton({
+	Name = "Join The Discord!",
+	Callback = function()
+    setclipboard("https://discord.gg/JEDCJDBbg3")
+    OrionLib:MakeNotification({
+      Name = "Kylee's Hub!",
+      Content = "Discord Link Copied To Clipboard",
+      Image = "rbxassetid://8387379647",
+      Time = 1
+    })
+  end
+})
+
+local LabelAFK = Tab5:AddLabel("Anti AFK Is Always Active")
+  
+OrionLib:MakeNotification({
+	Name = "Kylee's Hub!",
+	Content = "Fully Loaded",
+	Image = "rbxassetid://4838075912",
+	Time = 3
+})
+
+OrionLib:Init()
